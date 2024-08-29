@@ -1,7 +1,67 @@
 <mvc:View controllerName="idocmon.controller.idoc_monitor"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content >
+
+            <smartFilterBar:SmartFilterBar
+            id="smartFilterBar"
+            entitySet="IDOCSet"
+            enableBasicSearch="false" 
+        >
+            <smartFilterBar:controlConfiguration>
+                <smartFilterBar:ControlConfiguration
+                    id="DOCNUMFilter"
+                    key="DOCNUM"
+                    visibleInAdvancedArea="true"
+                >
+                </smartFilterBar:ControlConfiguration>
+
+                <smartFilterBar:ControlConfiguration
+                    id="STATUSFilter"
+                    key="STATUS"
+                    visibleInAdvancedArea="true"
+                >
+                </smartFilterBar:ControlConfiguration>
+
+
+
+
+            </smartFilterBar:controlConfiguration>
+        </smartFilterBar:SmartFilterBar>
+
+
+
+
+
+
+            <smartTable:SmartTable
+            id="smartTable"
+            smartFilterId="smartFilterBar"
+            entitySet="IDOCSet"
+            tableType="ResponsiveTable"
+            header="IDocs"
+            showRowCount="true"
+            enableAutoBinding="true"
+            class="sapUiResponsiveContentPadding"
+            enableAutoColumnWidth="true"
+            editTogglable="false"
+            initiallyVisibleFields="DOCNUM,STATUS,DIRECT,MESTYP,SNDPRN,RCVPRN"
+        >
+
+        <Table
+        id="table"
+        selectionChange="onRowSelect"
+        mode="MultiSelect"
+    />
+
+
+
+        </smartTable:SmartTable>
+
+
+        </content>
     </Page>
 </mvc:View>
