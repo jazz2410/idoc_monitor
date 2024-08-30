@@ -30,8 +30,6 @@ function (Controller,FilterOperator) {
                     value1: selectedItem.getKey()});
                 mBindingParams.filters.push(Filter);
             })
-            console.log("Date change triggered!")
-            console.log(this.getView().byId('DatePicker').getValue());
 
             var Date = this.getView().byId('DatePicker').getValue();
             var Filter = new sap.ui.model.Filter({
