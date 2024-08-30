@@ -1,67 +1,121 @@
-<mvc:View controllerName="idocmon.controller.idoc_monitor"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+<mvc:View
+    controllerName="idocmon.controller.idoc_monitor"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
     xmlns:smartTable="sap.ui.comp.smarttable"
-    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
-    <Page id="page" title="{i18n>title}">
-        <content >
-
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
             <smartFilterBar:SmartFilterBar
-            id="smartFilterBar"
-            entitySet="IDOCSet"
-            enableBasicSearch="false" 
-        >
-            <smartFilterBar:controlConfiguration>
-                <smartFilterBar:ControlConfiguration
-                    id="DOCNUMFilter"
-                    key="DOCNUM"
+                id="smartFilterBar"
+                entitySet="IDOCSet"
+                enableBasicSearch="false"
+            >
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration
+                        id="DOCNUMFilter"
+                        key="DOCNUM"
+                        visibleInAdvancedArea="true"
+                    />
+
+                    <smartFilterBar:ControlConfiguration
+                        id="STATUSFilter"
+                        key="STATUS"
+                        visibleInAdvancedArea="true"
+                    >
+                    <smartFilterBar:customControl>
+                        <MultiComboBox id="multiComboStatus" items="{path : '/STATUSSet'}">
+                            <core:Item id="statusItem" key="{IDOC_STATUS}" text="{DESCRP}" />
+                        </MultiComboBox>
+                    </smartFilterBar:customControl>
+                    </smartFilterBar:ControlConfiguration>
+
+
+                    <smartFilterBar:ControlConfiguration
+                        id="DOCTYPFilter"
+                        key="DOCTYP"
+                        visibleInAdvancedArea="true"
+                    />
+
+                    <smartFilterBar:ControlConfiguration
+                        id="MESTYPFilter"
+                        key="MESTYP"
+                        visibleInAdvancedArea="true"
+                    />
+
+                    <smartFilterBar:ControlConfiguration
+                        id="DIRECTFilter"
+                        key="DIRECT"
+                        visibleInAdvancedArea="true"
+                    >
+                    <smartFilterBar:customControl>
+                        <MultiComboBox id="multiComboDirection">
+                            <core:Item id="Inbound" key="Inbound" text="Inbound" />
+                            <core:Item id="Outbound" key="Outbound" text="Outbound" />
+                        </MultiComboBox>
+                    </smartFilterBar:customControl>
+                    
+            
+                    </smartFilterBar:ControlConfiguration>
+
+                    <smartFilterBar:ControlConfiguration
+                        id="SNDPRNFilter"
+                        key="SNDPRN"
+                        visibleInAdvancedArea="true"
+                    />
+
+                    <smartFilterBar:ControlConfiguration
+                        id="RCVPRNFilter"
+                        key="RCVPRN"
+                        visibleInAdvancedArea="true"
+                    />
+
+                    <smartFilterBar:ControlConfiguration
+                    id="CREDATFilter"
+                    key="CREDAT"
                     visibleInAdvancedArea="true"
+                    
                 >
+                <smartFilterBar:customControl>
+                    <DatePicker
+					id="DatePicker"
+                    placeholder="Enter date"
+                    valueFormat="yyyyMMdd"
+					/>
+                </smartFilterBar:customControl>
+
+
                 </smartFilterBar:ControlConfiguration>
 
-                <smartFilterBar:ControlConfiguration
-                    id="STATUSFilter"
-                    key="STATUS"
-                    visibleInAdvancedArea="true"
-                >
-                </smartFilterBar:ControlConfiguration>
-
-
-
-
-            </smartFilterBar:controlConfiguration>
-        </smartFilterBar:SmartFilterBar>
-
-
-
-
-
+                </smartFilterBar:controlConfiguration>
+            </smartFilterBar:SmartFilterBar>
 
             <smartTable:SmartTable
-            id="smartTable"
-            smartFilterId="smartFilterBar"
-            entitySet="IDOCSet"
-            tableType="ResponsiveTable"
-            header="IDocs"
-            showRowCount="true"
-            enableAutoBinding="true"
-            class="sapUiResponsiveContentPadding"
-            enableAutoColumnWidth="true"
-            editTogglable="false"
-            initiallyVisibleFields="DOCNUM,STATUS,DIRECT,MESTYP,SNDPRN,RCVPRN"
-        >
-
-        <Table
-        id="table"
-        selectionChange="onRowSelect"
-        mode="MultiSelect"
-    />
-
-
-
-        </smartTable:SmartTable>
-
-
+                id="smartTable"
+                smartFilterId="smartFilterBar"
+                entitySet="IDOCSet"
+                tableType="ResponsiveTable"
+                header="IDocs"
+                showRowCount="true"
+                enableAutoBinding="true"
+                class="sapUiResponsiveContentPadding"
+                enableAutoColumnWidth="true"
+                editTogglable="false"
+                initiallyVisibleFields="DOCNUM,STATUS,DIRECT,MESTYP,SNDPRN,RCVPRN,CREDAT,UPDDAT"
+                beforeRebindTable="onBeforeTableBind"
+            >
+                <Table
+                    id="table"
+                    selectionChange="onRowSelect"
+                    mode="MultiSelect"
+                />
+            </smartTable:SmartTable>
         </content>
     </Page>
 </mvc:View>
