@@ -29,13 +29,19 @@
                         key="STATUS"
                         visibleInAdvancedArea="true"
                     >
-                    <smartFilterBar:customControl>
-                        <MultiComboBox id="multiComboStatus" items="{path : '/STATUSSet'}">
-                            <core:Item id="statusItem" key="{IDOC_STATUS}" text="{DESCRP}" />
-                        </MultiComboBox>
-                    </smartFilterBar:customControl>
+                        <smartFilterBar:customControl>
+                            <MultiComboBox
+                                id="multiComboStatus"
+                                items="{path : '/STATUSSet'}"
+                            >
+                                <core:Item
+                                    id="statusItem"
+                                    key="{IDOC_STATUS}"
+                                    text="{DESCRP}"
+                                />
+                            </MultiComboBox>
+                        </smartFilterBar:customControl>
                     </smartFilterBar:ControlConfiguration>
-
 
                     <smartFilterBar:ControlConfiguration
                         id="DOCTYPFilter"
@@ -47,21 +53,37 @@
                         id="MESTYPFilter"
                         key="MESTYP"
                         visibleInAdvancedArea="true"
-                    />
+                    >
+                        <smartFilterBar:customControl>
+                            <Input
+                                id="MessageTypeInput"
+                                editable="true"
+                                width="150px"
+                                valueHelpRequest="onMessageTypeValueHelp"
+                                showValueHelp="true"
+                            />
+                        </smartFilterBar:customControl>
+                    </smartFilterBar:ControlConfiguration>
 
                     <smartFilterBar:ControlConfiguration
                         id="DIRECTFilter"
                         key="DIRECT"
                         visibleInAdvancedArea="true"
                     >
-                    <smartFilterBar:customControl>
-                        <MultiComboBox id="multiComboDirection">
-                            <core:Item id="Inbound" key="Inbound" text="Inbound" />
-                            <core:Item id="Outbound" key="Outbound" text="Outbound" />
-                        </MultiComboBox>
-                    </smartFilterBar:customControl>
-                    
-            
+                        <smartFilterBar:customControl>
+                            <MultiComboBox id="multiComboDirection">
+                                <core:Item
+                                    id="Inbound"
+                                    key="Inbound"
+                                    text="Inbound"
+                                />
+                                <core:Item
+                                    id="Outbound"
+                                    key="Outbound"
+                                    text="Outbound"
+                                />
+                            </MultiComboBox>
+                        </smartFilterBar:customControl>
                     </smartFilterBar:ControlConfiguration>
 
                     <smartFilterBar:ControlConfiguration
@@ -77,22 +99,18 @@
                     />
 
                     <smartFilterBar:ControlConfiguration
-                    id="CREDATFilter"
-                    key="CREDAT"
-                    visibleInAdvancedArea="true"
-                    
-                >
-                <smartFilterBar:customControl>
-                    <DatePicker
-					id="DatePicker"
-                    placeholder="Enter date"
-                    valueFormat="yyyyMMdd"
-					/>
-                </smartFilterBar:customControl>
-
-
-                </smartFilterBar:ControlConfiguration>
-
+                        id="CREDATFilter"
+                        key="CREDAT"
+                        visibleInAdvancedArea="true"
+                    >
+                        <smartFilterBar:customControl>
+                            <DatePicker
+                                id="DatePicker"
+                                placeholder="Enter date"
+                                valueFormat="yyyyMMdd"
+                            />
+                        </smartFilterBar:customControl>
+                    </smartFilterBar:ControlConfiguration>
                 </smartFilterBar:controlConfiguration>
             </smartFilterBar:SmartFilterBar>
 
@@ -114,6 +132,9 @@
                     id="table"
                     selectionChange="onRowSelect"
                     mode="MultiSelect"
+                    growing="true"
+                    growingScrollToLoad="true"
+                    growingThreshold="100"
                 />
             </smartTable:SmartTable>
         </content>
